@@ -1,0 +1,25 @@
+const path = require("path");
+const HtmlPlugin = require("html-webpack-plugin");
+const CopyPlugin = require("copy-webpack-plugin");
+
+module.exports = {
+  // 파일을 읽어들이기 시작하는 진입점 설정
+  entry: "./js/main.js",
+  // 결과물(번들) 반환하는 설정
+  output: {
+    clean: true,
+  },
+  // 번들링 후 결과물의 처리 방식 등 다양한 플로그인들을 설정
+  plugins: [
+    new HtmlPlugin({
+      template: "./index.html",
+      favicon: "./static/favicon.png",
+    }),
+    new CopyPlugin({
+      patterns: [{ from: "static" }],
+    }),
+  ],
+  devServer: {
+    host: "localhost",
+  },
+};
